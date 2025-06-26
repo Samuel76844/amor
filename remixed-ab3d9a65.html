@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Declaração de Amor em Código</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            font-family: 'Courier New', monospace;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: auto;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .code-section {
+            background: #1e1e1e;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-left: 4px solid #ff6b6b;
+            position: relative;
+            overflow-x: auto;
+        }
+
+        .code-section::before {
+            content: "Python";
+            position: absolute;
+            top: -10px;
+            right: 15px;
+            background: #ff6b6b;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+        }
+
+        .code-line {
+            margin: 8px 0;
+            white-space: pre;
+        }
+
+        .comment {
+            color: #6a9955;
+        }
+
+        .function {
+            color: #dcdcaa;
+        }
+
+        .string {
+            color: #ce9178;
+        }
+
+        .keyword {
+            color: #569cd6;
+        }
+
+        .heart-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .heart {
+            width: 300px;
+            height: 300px;
+            position: relative;
+            transform: rotate(-45deg);
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: '';
+            width: 150px;
+            height: 240px;
+            position: absolute;
+            left: 150px;
+            transform-origin: 0 100%;
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e, #ffa8a8);
+            border-radius: 150px 150px 0 0;
+            transform: rotate(-45deg);
+            box-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
+        }
+
+        .heart::after {
+            left: 0;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+        }
+
+        .love-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(45deg);
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            z-index: 10;
+        }
+
+        .countdown {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 18px;
+            color: #ff6b6b;
+        }
+
+        .countdown span {
+            display: inline-block;
+            margin: 0 10px;
+            padding: 10px 15px;
+            background: rgba(255, 107, 107, 0.2);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 107, 107, 0.3);
+        }
+
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .floating-heart {
+            position: absolute;
+            color: #ff6b6b;
+            font-size: 20px;
+            animation: float 6s linear infinite;
+            opacity: 0.7;
+        }
+
+        .css-section {
+            background: #1e1e1e;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            border-left: 4px solid #4fc3f7;
+            position: relative;
+            overflow-x: auto;
+        }
+
+        .css-section::before {
+            content: "CSS";
+            position: absolute;
+            top: -10px;
+            right: 15px;
+            background: #4fc3f7;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+        }
+
+        .css-property {
+            color: #92c5f7;
+        }
+
+        .css-value {
+            color: #ce9178;
+        }
+
+        .css-selector {
+            color: #d7ba7d;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: rotate(-45deg) scale(1); }
+            50% { transform: rotate(-45deg) scale(1.1); }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .author {
+            text-align: center;
+            margin-top: 30px;
+            color: #888;
+            font-size: 14px;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+                margin: 10px;
+            }
+            
+            .heart {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .heart::before,
+            .heart::after {
+                width: 100px;
+                height: 160px;
+                left: 100px;
+                border-radius: 100px 100px 0 0;
+            }
+            
+            .heart::after {
+                left: 0;
+            }
+            
+            .love-text {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-hearts" id="floatingHearts"></div>
+    
+    <div class="container">
+        <div class="code-section">
+            <div class="code-line"><span class="comment"># Para o amor da minha vida:</span></div>
+            <div class="code-line"><span class="comment">#</span></div>
+            <div class="code-line"><span class="keyword">def</span> <span class="function">declarar_amor</span>():</div>
+            <div class="code-line">    <span class="keyword">print</span>(<span class="string">"Se puder elogiar"</span>)</div>
+            <div class="code-line">    <span class="keyword">print</span>(<span class="string">"lugar seguro, seria a teu lado."</span>)</div>
+            <div class="code-line">    <span class="keyword">print</span>(<span class="string">"quanto mas tempo passo"</span>)</div>
+            <div class="code-line">    <span class="keyword">print</span>(<span class="string">"contigo, mas te amo."</span>)</div>
+            <div class="code-line">    <span class="comment">#para mi amor</span></div>
+            <div class="code-line">    <span class="comment">#de mim para meu amor</span></div>
+            <div class="code-line">    <span class="comment"># sentimentos real.</span></div>
+            <div class="code-line">    <span class="keyword">print</span>(<span class="string">"I Love You! ❤️"</span>)</div>
+            <div class="code-line"></div>
+            <div class="code-line"><span class="function">declarar_amor</span>()</div>
+        </div>
+
+        <div class="heart-container">
+            <div class="heart">
+                <div class="love-text">I Love You!</div>
+            </div>
+        </div>
+
+        <div class="countdown">
+            <div>Horas dias minutos segundos...</div>
+            <div style="margin-top: 10px;">
+                <span id="days">0</span> dias
+                <span id="hours">0</span> horas
+                <span id="minutes">0</span> minutos
+                <span id="seconds">01</span> segundos
+            </div>
+        </div>
+
+        <div class="css-section">
+            <div class="code-line"><span class="css-selector">.Love__You</span> {</div>
+            <div class="code-line">    <span class="css-property">float</span>: <span class="css-value">left</span>;</div>
+            <div class="code-line">    <span class="css-property">width</span>: <span class="css-value">440px</span>;</div>
+            <div class="code-line">    <span class="css-property">margin-top</span>: <span class="css-value">60px</span> <span class="keyword">!important</span>;</div>
+            <div class="code-line">    <span class="css-property">height</span>: <span class="css-value">400px</span>;</div>
+            <div class="code-line">    <span class="css-property">color</span>: <span class="css-value">#333</span>;</div>
+            <div class="code-line">    <span class="css-property">font-family</span>: <span class="css-value">"Love"</span>;</div>
+            <div class="code-line">    <span class="css-property">font-size</span>: <span class="css-value">25px</span>;</div>
+            <div class="code-line">}</div>
+        </div>
+
+        <div class="author">
+            <p>SamuDev | Web Developer</p>
+            <p>Programação | Heart Love 'I Love You', Text love</p>
+        </div>
+    </div>
+
+    <script>
+        // Contador dinâmico
+        function updateCountdown() {
+            const startDate = new Date('2024-06-25T00:00:00');
+            const now = new Date();
+            const diff = now - startDate;
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+
+        // Corações flutuantes
+        function createFloatingHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'floating-heart';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            heart.style.animationDelay = Math.random() * 2 + 's';
+            
+            document.getElementById('floatingHearts').appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }
+
+        // Inicializar
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+        
+        // Criar corações flutuantes periodicamente
+        setInterval(createFloatingHeart, 2000);
+        
+        // Criar alguns corações iniciais
+        for(let i = 0; i < 5; i++) {
+            setTimeout(createFloatingHeart, i * 500);
+        }
+    </script>
+</body>
+</html>
